@@ -1,3 +1,3 @@
-# core-worker
+# omnispec
 
-Worker image for ruby and python multi-environment spec testing
+All-in-one docker image for ansible and puppet spec testing.
