@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SOURCE_DIR=${1:-.}
-
 PUPPET_EXCLUDED_DIRS=(
   'spec'
   'tests'
@@ -10,10 +8,10 @@ PUPPET_EXCLUDED_DIRS=(
 
 function is_puppet_project() {
   local directory=$1
-  if find_puppet_files | grep -q '.pp'; then
-    return 1
+  if find_puppet_files $directory | grep -q '.pp'; then
+    return 0
   fi
-  return 0
+  return 1
 }
 
 function find_puppet_files() {
@@ -33,11 +31,13 @@ function find_puppet_modules() {
 }
 
 function puppet_lint() {
-  for file in $(find_puppet_files $SOURCE_DIR); do
+  local directory=$1
+  for file in $(find_puppet_files $directory); do
     puppet-lint $file
   done
 }
 
 function puppet_compile_catalog() {
-  find_puppet_modules $SOURCE_DIR
+  local directory=$1
+  find_puppet_modules $directory
 }

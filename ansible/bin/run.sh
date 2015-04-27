@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SOURCE_DIR=${1:-.}
-
 PUPPET_EXCLUDED_DIRS=(
   'spec'
   'tests'
@@ -10,10 +8,10 @@ PUPPET_EXCLUDED_DIRS=(
 
 function is_ansible_project() {
   local directory=$1
-  if [ -f $(find_ansible_roles | head -n1)/tasks/main.yml ]; then
-    return 1
+  if [ -f $(find_ansible_roles $directory | head -n1)/tasks/main.yml ]; then
+    return 0
   fi
-  return 0
+  return 1
 }
 
 function find_ansible_roles() {
@@ -24,5 +22,6 @@ function find_ansible_roles() {
 }
 
 function run_ansible_syntax_check() {
-  find_ansible_roles $SOURCE_DIR
+  local directory=$1
+  find_ansible_roles $directory
 }
