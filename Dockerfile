@@ -17,10 +17,10 @@ COPY setup_all.sh /work/
 COPY setup.sh /work/
 RUN ./setup.sh ansible 1.0
 RUN ./setup.sh ansible 1.8.4
-RUN ./setup.sh puppet 3.2.0
-RUN ./setup.sh puppet 3.4.2
+RUN ./setup.sh puppet 3.2.4
+RUN ./setup.sh puppet 3.4.3
 RUN ./setup.sh puppet 3.7.5
 RUN ./setup.sh puppet 4.0.0
 
 COPY test.sh /work/test.sh
-CMD ["/work/test.sh"]
+ENTRYPOINT ["/work/test.sh"]
