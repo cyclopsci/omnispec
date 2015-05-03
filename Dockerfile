@@ -23,4 +23,4 @@ RUN ./setup.sh puppet 3.7.5
 RUN ./setup.sh puppet 4.0.0
 
 COPY test.sh /work/test.sh
-ENTRYPOINT ["/work/test.sh"]
+CMD ["/work/test.sh"]

@@ -1,11 +1,13 @@
 #!/bin/bash
 
-PROJECT_DIR=$1
+PROJECT_DIR=/project
 CWD=$(pwd)
 
 [ -d $PROJECT_DIR ] || exit 1
 
 echo "Project: ${PROJECT_DIR}"
+echo "Project Files:"
+ls ${PROJECT_DIR}
 
 echo "=== python ==="
 python --version
