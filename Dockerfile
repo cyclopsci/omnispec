@@ -10,6 +10,8 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins
 RUN rbenv install 1.8.7-p375
 RUN rbenv install 2.1.5
 
+RUN mkdir -p /usr/omni
+
 WORKDIR /work
 COPY ansible /work/ansible
 COPY puppet /work/puppet
@@ -23,4 +25,5 @@ RUN ./setup.sh puppet 3.7.5
 RUN ./setup.sh puppet 4.0.0
 
 COPY test.sh /work/test.sh
+COPY bin/omni /usr/bin/omni
 CMD ["/work/test.sh"]

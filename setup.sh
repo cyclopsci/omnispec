@@ -2,22 +2,24 @@
 
 TYPE=$1
 VERSION=$2
+TOOL_BASE=${3:-/usr/omni}
 
 function boiler2dir() {
   local t=$1
   local v=$2
-  cp -R $t/boilerplate $t/$v
-  sed -i "s/%%VERSION/${v}/g" $t/$v/*
+  mkdir -p $TOOL_BASE/$t/$v
+  cp -R $t/boilerplate/* $TOOL_BASE/$t/$v
+  sed -i "s/%%VERSION/${v}/g" $TOOL_BASE/$t/$v/*
 }
 
 if grep -q $VERSION $TYPE/versions.txt; then
-  [ -d "$TYPE/$VERSION" ] || boiler2dir $TYPE $VERSION
+  [ -d "$TOOL_BASE/$TYPE/$VERSION" ] || boiler2dir $TYPE $VERSION
 else
   echo "${TYPE} version '${VERSION}' not supported" && exit 1
 fi
 
 echo "Configuring $TYPE $VERSION"
-cd $TYPE/$VERSION
+cd $TOOL_BASE/$TYPE/$VERSION
 
 if [[ $TYPE == "ansible" ]]; then
   virtualenv .venv
@@ -25,7 +27,7 @@ if [[ $TYPE == "ansible" ]]; then
   [ -f requirements.txt ] && pip install -r requirements.txt
   deactivate
 elif [[ $TYPE == "puppet" ]]; then
-  [ -f Gemfile ] && bundle install --path .gem
+  [ -f Gemfile ] && bundle install --path .gem --binstubs
 fi
 
 cd -

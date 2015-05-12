@@ -2,11 +2,28 @@
 
 All-in-one docker image for ansible and puppet spec testing.
 
-# usage
+# build
 ```
 docker build -t omnispec .
 docker run -it omnispec
 ```
-Building the image takes about 5 mins for base dependencies.
-Each ansible version takes approximately 1 minute.
-Each puppet version takes approximately 15 seconds.
+
+# omni
+The included `/usr/bin/omni` tool allows for easy switching between tool environments.
+
+See the available tools
+```
+omni
+```
+
+See the available versions for a tool
+```
+omni ansible
+omni puppet
+```
+
+Activate an environment.  The tool should be launched with a preceeding `.` to allow it to setup your shell environment and path.
+```
+$ . omni ansible 1.0
+$ . omni puppet 3.2.4
+```
