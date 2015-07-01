@@ -13,17 +13,16 @@ The included `/usr/bin/omni` tool allows for easy switching between tool environ
 
 See the available tools
 ```
-omni
+omni ls
 ```
 
-See the available versions for a tool
+Activate an environment.  The tool should be launched within `$()` to allow it to setup your shell environment and path.
 ```
-omni ansible
-omni puppet
+$ $(omni enter ansible 1.0)
+$ $(omni enter puppet 3.2.4)
 ```
 
-Activate an environment.  The tool should be launched with a preceeding `.` to allow it to setup your shell environment and path.
+To leave the environment:
 ```
-$ . omni ansible 1.0
-$ . omni puppet 3.2.4
+$ $(omni exit)
 ```
