@@ -23,8 +23,6 @@ RUN ./setup.sh puppet 3.2.4
 RUN ./setup.sh puppet 3.4.3
 RUN ./setup.sh puppet 3.7.5
 RUN ./setup.sh puppet 4.0.0
-RUN ./setup.sh puppet 4.1.0
-RUN ./setup.sh puppet 4.2.0
 
 COPY test.sh /work/test.sh
 COPY bin/omni /usr/bin/omni
