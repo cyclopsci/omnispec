@@ -15,7 +15,6 @@ RUN mkdir -p /usr/omni
 WORKDIR /work
 COPY ansible /work/ansible
 COPY puppet /work/puppet
-COPY setup_all.sh /work/
 COPY setup.sh /work/
 RUN ./setup.sh ansible 1.0
 RUN ./setup.sh ansible 1.8.4
