@@ -12,11 +12,7 @@ function boiler2dir() {
   sed -i "s/%%VERSION/${v}/g" $TOOL_BASE/$t/$v/*
 }
 
-if grep -q $VERSION $TYPE/versions.txt; then
-  [ -d "$TOOL_BASE/$TYPE/$VERSION" ] || boiler2dir $TYPE $VERSION
-else
-  echo "${TYPE} version '${VERSION}' not supported" && exit 1
-fi
+[ -d "$TOOL_BASE/$TYPE/$VERSION" ] || boiler2dir $TYPE $VERSION
 
 echo "Configuring $TYPE $VERSION"
 cd $TOOL_BASE/$TYPE/$VERSION
