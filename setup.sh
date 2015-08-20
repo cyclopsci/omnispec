@@ -9,7 +9,7 @@ function boiler2dir() {
   local v=$2
   mkdir -p $TOOL_BASE/$t/$v
   cp -R $t/boilerplate/* $TOOL_BASE/$t/$v
-  sed -i "s/%%VERSION/${v}/g" $TOOL_BASE/$t/$v/*
+  find $TOOL_BASE/$t/$v/ -type f -exec sed -i "s/%%VERSION/${v}/g" {} \;
 }
 
 [ -d "$TOOL_BASE/$TYPE/$VERSION" ] || boiler2dir $TYPE $VERSION
