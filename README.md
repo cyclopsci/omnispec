@@ -1,5 +1,7 @@
 # omnispec
 
+[![Join the chat at https://gitter.im/cyclopsci/omnispec](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cyclopsci/omnispec?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 All-in-one docker image for ansible and puppet spec testing.
 
 # build
